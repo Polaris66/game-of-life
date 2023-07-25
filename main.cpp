@@ -1,15 +1,19 @@
+#include "headers/Grid.hpp"
 #include <SFML/Graphics.hpp>
 
 int main()
 {
     int width = 800;
     int height = 600;
+
+    int size = 40;
+
+    int x = width / size;
+    int y = height / size;
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(width, height), "Game of Life");
 
-    sf::CircleShape shape(50.f);
-    shape.setFillColor(sf::Color(100, 250, 50));
-
+    Grid grid(size, x, y);
     // Main Loop
     while (window.isOpen())
     {
@@ -25,8 +29,9 @@ int main()
 
         window.clear(sf::Color::Black);
 
+        grid.render(window);
+
         // Display Stuff
-        window.draw(shape);
         window.display();
     }
 
