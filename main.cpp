@@ -7,6 +7,9 @@ int main()
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(width, height), "Game of Life");
 
+    sf::CircleShape shape(50.f);
+    shape.setFillColor(sf::Color(100, 250, 50));
+
     // Main Loop
     while (window.isOpen())
     {
@@ -19,5 +22,13 @@ int main()
                 window.close();
             }
         }
+
+        window.clear(sf::Color::Black);
+
+        // Display Stuff
+        window.draw(shape);
+        window.display();
     }
+
+    return 0;
 }
