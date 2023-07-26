@@ -1,8 +1,10 @@
-#include <cstring>
-#include "headers/Cell.hpp"
-#include "headers/Grid.hpp"
 #include <SFML/Graphics.hpp>
+
 #include <iostream>
+#include <cstring>
+
+#include "Headers/Grid.hpp"
+#include "Headers/Cell.hpp"
 
 Grid::Grid(int _size, int _x, int _y)
 {
@@ -22,11 +24,44 @@ Grid::Grid(int _size, int _x, int _y)
 
 Cell *Grid::getCell(int xpos, int ypos)
 {
+    if (xpos > x || ypos > y || xpos < 0 || ypos < 0)
+    {
+        return nullptr;
+    }
     return cells + (y * xpos + ypos);
+}
+
+void Grid::setNeighbors(int xpos, int ypos)
+{
+    int neighbors = 0;
+    for (int i = xpos - 1; i <= xpos + 1; i++)
+    {
+        for (int j = ypos - 1; j <= ypos + 1; j++)
+        {
+            if (!(xpos == i && ypos == j))
+            {
+                Cell *cell = getCell(i, j);
+                if (cell)
+                {
+                    neighbors += cell->alive;
+                }
+            }
+        }
+    }
+
+    getCell(xpos, ypos)->setNeighbors(neighbors);
 }
 
 void Grid::update()
 {
+    for (int i = 0; i < x; i++)
+    {
+        for (int j = 0; j < y; j++)
+        {
+            setNeighbors(i, j);
+            getCell(i, j)->update();
+        }
+    }
 }
 
 void Grid::render(sf::RenderWindow &window)
@@ -35,7 +70,9 @@ void Grid::render(sf::RenderWindow &window)
     {
         for (int j = 0; j < y; j++)
         {
-            window.draw(cells[i * y + j].shape);
+            Cell *cell = getCell(i, j);
+            cell->render();
+            window.draw(cell->shape);
         }
     }
 }

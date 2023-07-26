@@ -1,5 +1,7 @@
-#include "headers/Grid.hpp"
 #include <SFML/Graphics.hpp>
+#include <chrono>
+
+#include "Headers/Grid.hpp"
 
 int main()
 {
@@ -14,8 +16,9 @@ int main()
     sf::RenderWindow window(sf::VideoMode(width, height), "Game of Life");
 
     Grid grid(size, x, y);
+    sf::Clock clock;
     // Main Loop
-    while (window.isOpen())
+    while (1 == window.isOpen())
     {
         sf::Event event;
         while (window.pollEvent(event))
@@ -29,6 +32,11 @@ int main()
 
         window.clear(sf::Color::Black);
 
+        if (clock.getElapsedTime().asSeconds() > 0.01f)
+        {
+            grid.update();
+            clock.restart();
+        }
         grid.render(window);
 
         // Display Stuff
