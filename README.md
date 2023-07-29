@@ -19,9 +19,7 @@ Clone/Download the repo.
 
 `git clone repo`
 
-Execute the run file
-
-`./run`
+Open/Execute `game_of_life`
 
 ## Controls
 
