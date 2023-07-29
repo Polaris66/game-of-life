@@ -43,6 +43,7 @@ int main()
 
     // Create Clock
     sf::Clock clock;
+    double timeBetweenFrames = 1.0;
     // Main Loop
     while (1 == window.isOpen())
     {
@@ -61,6 +62,36 @@ int main()
                 {
                     paused = !paused;
                 }
+                if (event.key.code == sf::Keyboard::R)
+                {
+                    grid = Grid(size, sideBarGap, titleHeight, x, y);
+                }
+                if (event.key.code == sf::Keyboard::C)
+                {
+                    grid.clear();
+                }
+                if (event.key.code == sf::Keyboard::Right)
+                {
+                    timeBetweenFrames /= 2;
+                }
+                if (event.key.code == sf::Keyboard::Left)
+                {
+                    timeBetweenFrames *= 2;
+                }
+            }
+
+            if (event.type == sf::Event::MouseButtonPressed)
+            {
+                if (event.mouseButton.button == sf::Mouse::Left)
+                {
+                    int xpos = event.mouseButton.x;
+                    int ypos = event.mouseButton.y;
+
+                    if ((xpos >= sideBarGap) && (xpos <= sideBarGap + width) && (ypos >= titleHeight) && (ypos <= titleHeight + height))
+                    {
+                        grid.toggle(xpos - sideBarGap, ypos - titleHeight);
+                    }
+                }
             }
         }
 
@@ -69,7 +100,7 @@ int main()
         // Draw Text
         window.draw(title);
 
-        if (clock.getElapsedTime().asSeconds() > 1.0f && !paused)
+        if (clock.getElapsedTime().asSeconds() > timeBetweenFrames && !paused)
         {
             grid.update();
             clock.restart();

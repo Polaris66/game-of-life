@@ -11,7 +11,8 @@ public:
     bool alive;
     void render();
     void update();
-
+    void toggle();
+    void kill();
     void setNeighbors(int _neighbors);
 
     Cell();

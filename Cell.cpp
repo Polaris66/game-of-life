@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 #include "Headers/Grid.hpp"
 #include "Headers/Cell.hpp"
@@ -33,6 +34,18 @@ void Cell::render()
 void Cell::setNeighbors(int _neighbors)
 {
     neighbors = _neighbors;
+}
+
+void Cell::toggle()
+{
+    alive = !alive;
+    render();
+}
+
+void Cell::kill()
+{
+    alive = false;
+    render();
 }
 
 void Cell::update()

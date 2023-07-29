@@ -10,10 +10,11 @@ private:
 
 public:
     Grid(int _size, int base_x, int base_y, int _x, int _y);
-    ~Grid();
 
     void update();
     void render(sf::RenderWindow &window);
+    void toggle(int xpos, int ypos);
+    void clear();
 
     Cell *getCell(int xpos, int ypos);
     void setNeighbors(int xpos, int ypos);

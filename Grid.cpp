@@ -64,6 +64,22 @@ void Grid::update()
     }
 }
 
+void Grid::clear()
+{
+    for (int i = 0; i < x; i++)
+    {
+        for (int j = 0; j < y; j++)
+        {
+            getCell(i, j)->kill();
+        }
+    }
+}
+
+void Grid::toggle(int xpos, int ypos)
+{
+    getCell(xpos / size, ypos / size)->toggle();
+}
+
 void Grid::render(sf::RenderWindow &window)
 {
     for (int i = 0; i < x; i++)
@@ -75,9 +91,4 @@ void Grid::render(sf::RenderWindow &window)
             window.draw(cell->shape);
         }
     }
-}
-
-Grid::~Grid()
-{
-    free(cells);
 }
