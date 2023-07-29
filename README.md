@@ -20,8 +20,13 @@ Download the run file and run it.
 ## Controls
 
 Left Mouse Button - Toggle Cells
+
 P - Pause/Play
+
 C - Clear
+
 R - Randomize
+
 Right Arrow Key - Speed Up
+
 Left Arrow Key - Slow Down
