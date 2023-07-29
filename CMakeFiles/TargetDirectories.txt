@@ -1,0 +1,3 @@
+/home/polaris/game-of-life/CMakeFiles/game_of_life.dir
+/home/polaris/game-of-life/CMakeFiles/edit_cache.dir
+/home/polaris/game-of-life/CMakeFiles/rebuild_cache.dir
