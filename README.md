@@ -15,7 +15,13 @@ It's an example of Cellular Automata and follows the following rules:
 
 ## Download Instructions
 
-Download the run file and run it.
+Clone/Download the repo.
+
+`git clone repo`
+
+Execute the run file
+
+`./run`
 
 ## Controls
 
