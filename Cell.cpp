@@ -7,24 +7,26 @@ Cell::Cell()
 {
 }
 
-Cell::Cell(int i, int j, float size)
+Cell::Cell(int i, int j, int base_x, int base_y, float size)
 {
     x = i;
     y = j;
     alive = rand() % 2;
     shape = sf::RectangleShape(sf::Vector2f(size, size));
-    shape.setPosition(i * size, j * size);
+    shape.setPosition(base_x + i * size, base_y + j * size);
+    shape.setOutlineThickness(2.0f);
+    shape.setOutlineColor(sf::Color(255, 255, 255));
 }
 
 void Cell::render()
 {
     if (alive)
     {
-        shape.setFillColor(sf::Color::White);
+        shape.setFillColor(sf::Color(255, 255, 255, 150));
     }
     else
     {
-        shape.setFillColor(sf::Color::Black);
+        shape.setFillColor(sf::Color(0, 0, 0, 0));
     }
 }
 

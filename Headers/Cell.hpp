@@ -15,5 +15,5 @@ public:
     void setNeighbors(int _neighbors);
 
     Cell();
-    Cell(int i, int j, float size);
+    Cell(int i, int j, int base_x, int base_y, float size);
 };

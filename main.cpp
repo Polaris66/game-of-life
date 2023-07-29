@@ -5,7 +5,13 @@
 
 int main()
 {
-    int width = 800;
+    int windowWidth = 1200;
+    int windowHeight = 800;
+
+    int sideBarWidth = 400;
+    int titleHeight = 100;
+
+    int width = 600;
     int height = 600;
 
     int size = 40;
@@ -13,9 +19,9 @@ int main()
     int x = width / size;
     int y = height / size;
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(width, height), "Game of Life");
+    sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Game of Life");
 
-    Grid grid(size, x, y);
+    Grid grid(size, sideBarWidth, titleHeight, x, y);
     sf::Clock clock;
     // Main Loop
     while (1 == window.isOpen())
@@ -32,7 +38,7 @@ int main()
 
         window.clear(sf::Color::Black);
 
-        if (clock.getElapsedTime().asSeconds() > 0.01f)
+        if (clock.getElapsedTime().asSeconds() > 1.0f)
         {
             grid.update();
             clock.restart();

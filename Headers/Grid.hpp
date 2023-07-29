@@ -9,7 +9,8 @@ private:
     Cell *cells = nullptr;
 
 public:
-    Grid(int _size, int _x, int _y);
+    Grid(int _size, int base_x, int base_y, int _x, int _y);
+    ~Grid();
 
     void update();
     void render(sf::RenderWindow &window);

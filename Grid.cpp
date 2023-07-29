@@ -6,7 +6,7 @@
 #include "Headers/Grid.hpp"
 #include "Headers/Cell.hpp"
 
-Grid::Grid(int _size, int _x, int _y)
+Grid::Grid(int _size, int base_x, int base_y, int _x, int _y)
 {
     size = _size;
     x = _x;
@@ -17,7 +17,7 @@ Grid::Grid(int _size, int _x, int _y)
     {
         for (int j = 0; j < y; j++)
         {
-            cells[y * i + j] = Cell(i, j, size);
+            cells[y * i + j] = Cell(i, j, base_x, base_y, size);
         }
     }
 }
@@ -75,4 +75,9 @@ void Grid::render(sf::RenderWindow &window)
             window.draw(cell->shape);
         }
     }
+}
+
+Grid::~Grid()
+{
+    free(cells);
 }
